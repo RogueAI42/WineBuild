@@ -5,18 +5,13 @@ export LC_ALL=C
 export WINEBUILD_DIR="$PWD"
 source "$WINEBUILD_DIR/lib/sources"
 
-[ -e $HOME/build.lock ] && echo "Already running, exiting" && exit
-touch $HOME/build.lock 
+[ -e $BUILD_LOCK ] && echo "Already running, exiting" && exit
+touch $BUILD_LOCK
 notify "[Winebuild] Winebuild is starting !"
 
+# Get target from POL... linux-x86/darwin-x86/freebsd-x86/linux-amd64
+POL_Start_Winebuild "$1"
 
-POL_Start_Winebuild "linux-x86"
-POL_Start_Winebuild "darwin-x86"
-#POL_Start_Winebuild "freebsd-x86"
-POL_Start_Winebuild "linux-amd64"
-
-#[ "$1" == "--noNews" ] || sendNews
-
-rm $HOME/build.lock 
+rm $BUILD_LOCK
 
 exit 0 

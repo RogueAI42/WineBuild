@@ -8,7 +8,7 @@ source "$WINEBUILD_DIR/lib/sources"
 rba()
 {
 	[ "$1" = "" ] && return
-	cd "$HOME/wine/$1"
+	cd "$INSTALL_DIR/$1"
 	for file in wine-1.7*;
 	do
 		echo "[$1] Building $file ..." 

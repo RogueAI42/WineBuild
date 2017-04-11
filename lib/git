@@ -20,8 +20,8 @@ POL_WineBuild_CheckoutGIT()
 
 POL_WineBuild_GeneralClean()
 {
-	 POL_WineBuild_CleanGIT "$HOME/wine-git/"
-	 POL_WineBuild_CleanGIT "$HOME/wine-tools/"
+	 POL_WineBuild_CleanGIT "$WINE_GIT"
+	 POL_WineBuild_CleanGIT "$WINE_TOOLS"
 }
 
 POL_WineBuild_GetTags()
@@ -153,7 +153,7 @@ EOF
 	tar jcf "$BINARIES_DIR"/$arch/PlayOnLinux-$buildName-$arch.pol *
 	cd "$BINARIES_DIR/$arch/"
 	shasum PlayOnLinux-$buildName-$arch.pol > PlayOnLinux-$buildName-$arch.pol.sha1
-	cd $HOME/winebuild
+	cd $WINEBUILD_DIR
 	[ "$4" = "noList" ] || POL_WineBuild_BuildList
 }
 
@@ -164,7 +164,7 @@ POL_WineBuild_BuildList()
 	for arch in *; do
 		cd "$BINARIES_DIR/$arch" 2> /dev/null 
 		if [ "$?" = 0 ]; then
-			echo "Entering $HOME/binaries/$arch"
+			echo "Entering $BINARIES_DIR$arch"
 			touch ../$arch.lst
 			if [ ! "$(ls)" = "" ]; then
 				for file in *; do

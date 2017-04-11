@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# Only set variables if POL hasn't set them already
+if [ -z "$WINE_GIT" ]
+then
+
 export WINE_GIT="$HOME/wine-git/"
 export WINE_TOOLS="$HOME/wine-tools/"
 
@@ -9,6 +13,9 @@ export LOG_DIR="$HOME/logs/"
 export INSTALL_DIR="$HOME/wine/"
 export PATCHES_DIR="$HOME/wine-patches"
 export LIB_DIR="$HOME/wine-libs"
+export IGNORE_LST="$HOME/ignore.lst"
+export BUILD_LOCK="$HOME/build.lock"
+export STATE_FILE="$HOME/state"
 
 export PATH_ORIG="$PATH"
 
@@ -21,3 +28,5 @@ mono_current="$HOME/current_mono"
 mono_file="$HOME/wine/mono/mono.lst"
 
 export POL_COOKIES_FILE="$HOME/winebuild/cookies.txt"
+
+fi
